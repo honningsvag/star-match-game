@@ -5,8 +5,8 @@ import Star from './Star';
 const StarMatch = () => {
 
   const [stars, setStars] = useState(utils.random(1, 9));
-  const [availableNums, setavailableNums] = useState(utils.range(1, 9));
-  const [candidateNums, setcandidateNums] = useState([]);
+  const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
+  const [candidateNums, setCandidateNums] = useState([]);
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
 
@@ -23,8 +23,17 @@ const StarMatch = () => {
       return;
     }
     
-    const newCandidateNum = candidateNums.concat(number);
-    
+    const newCandidateNums = candidateNums.concat(number);
+    if (utils.sum(newCandidateNums) !== stars) {
+      setCandidateNums(newCandidateNums);
+    } else {
+      const newAvailableNums = availableNums.filter(
+        n => !newCandidateNums.includes(n)
+      );
+      setStars(utils.randomSumIn(newAvailableNums, 9));
+      setAvailableNums(newAvailableNums);
+      setCandidateNums([]);
+    }
 
   };
 
