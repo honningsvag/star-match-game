@@ -3,7 +3,7 @@ import React from 'react';
 const Star = (props) => {
   return (
     <>
-    {utils.range(1, props.count).map((starId, index) => <div key={starId} className='star' />)}
+      {utils.range(1, props.count).map((starId, index) => <div key={starId} className='star' />)}
     </>
   )
 }

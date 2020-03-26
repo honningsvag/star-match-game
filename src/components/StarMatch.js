@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import NumberButton from './NumberButton';
 import Star from './Star';
 
 const StarMatch = () => {
 
-  const [stars, setStars] = useState(utils.random(1,9));
+  const [stars, setStars] = useState(utils.random(1, 9));
+  const [availableNums, setavailableNums] = useState(utils.range(1, 9));
+  const [candidateNums, setcandidateNums] = useState([]);
+
+  const candidatesAreWrong = utils.sum(candidateNums) > stars;
+
+  const numberStatus = (number) => {
+    if (!availableNums.includes(number))
+      return 'used';
+    if (candidateNums.includes(number))
+      return candidatesAreWrong ? 'wrong' : 'candidate'
+    return 'available';
+  };
 
   return (
     <div className="game">
@@ -13,10 +25,15 @@ const StarMatch = () => {
       </div>
       <div className="body">
         <div className="left">
-          <Star count={stars}/>
+          <Star count={stars} />
         </div>
         <div className="right">
-          {utils.range(1, 9).map(number => <NumberButton key={number} number={number} />)}
+          {utils.range(1, 9).map(number =>
+            <NumberButton
+              key={number}
+              number={number} 
+              status={numberStatus(number)}
+            />)}
         </div>
       </div>
       <div className="timer">Time Remaining: 10</div>
