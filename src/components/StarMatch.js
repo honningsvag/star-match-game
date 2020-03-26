@@ -18,6 +18,16 @@ const StarMatch = () => {
     return 'available';
   };
 
+  const onNumberClick = (number, currentStatus) => {
+    if (currentStatus === 'used') {
+      return;
+    }
+    
+    const newCandidateNum = candidateNums.concat(number);
+    
+
+  };
+
   return (
     <div className="game">
       <div className="help">
@@ -33,6 +43,7 @@ const StarMatch = () => {
               key={number}
               number={number} 
               status={numberStatus(number)}
+              onClick={onNumberClick}
             />)}
         </div>
       </div>

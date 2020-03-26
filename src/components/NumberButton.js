@@ -4,7 +4,7 @@ const NumberButton = (props) => {
   return (
     <button
       className='number'
-      onClick={() => console.log('Num', props.number, 'clicked')}
+      onClick={() => props.onClick(props.number, props.status)}
       style={{backgroundColor: colors[props.status]}}
     >
       {props.number}
