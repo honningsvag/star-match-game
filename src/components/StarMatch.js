@@ -12,6 +12,12 @@ const StarMatch = () => {
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
   const gameOver = availableNums.length === 0;
 
+  const resetGame = () => {
+    setStars(utils.random(1, 9));
+    setAvailableNums(utils.range(1,9));
+    setCandidateNums([]);  
+  }
+
   const numberStatus = (number) => {
     if (!availableNums.includes(number))
       return 'used';
@@ -28,7 +34,8 @@ const StarMatch = () => {
     const newCandidateNums = 
       currentStatus === 'available' 
       ? candidateNums.concat(number)
-      : candidateNums.filter(currentNumber=> currentNumber !== number)
+      : candidateNums.filter(currentNumber => currentNumber !== number);
+
     if (utils.sum(newCandidateNums) !== stars) {
       setCandidateNums(newCandidateNums);
     } else {
@@ -49,7 +56,7 @@ const StarMatch = () => {
       </div>
       <div className="body">
         <div className="left">
-          {gameOver ? (<PlayAgain />) : (<Star count={stars} />)}
+          {gameOver ? (<PlayAgain onClick={resetGame} />) : (<Star count={stars} />)}
         </div>
         <div className="right">
           {utils.range(1, 9).map(number =>

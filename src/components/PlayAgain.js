@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PlayAgain = () => {
+const PlayAgain = (props) => {
   return (
-    <div>
-      
+    <div className='game-done' onClick={props.onClick}>
+      <button>Play Again</button>      
     </div>
   )
 }
