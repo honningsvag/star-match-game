@@ -21,7 +21,7 @@ const StarMatch = () => {
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
 
-  const gameStatus = availableNums === 0 
+  const gameStatus = availableNums.length === 0 
   ? 'won' 
   : secondsRemaining === 0 ? 'lost' : 'active'
 
