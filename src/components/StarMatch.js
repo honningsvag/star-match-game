@@ -17,8 +17,20 @@ const StarMatch = () => {
   
   });
 
+  useEffect(() => {
+    if (secondsRemaining > 0) {
+      const timerId = setTimeout(() => {
+        setSecondsRemaining(secondsRemaining - 1);
+      }, 1000);
+    }
+    return () => clearTimeout(timerId);
+  }, [input])
+
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
-  const gameOver = availableNums.length === 0;
+
+  const gameStatus = availableNums === 0 
+  ? 'won' 
+  : secondsRemaining === 0 ? 'lost' : 'active'
 
   const resetGame = () => {
     setStars(utils.random(1, 9));
@@ -64,7 +76,7 @@ const StarMatch = () => {
       </div>
       <div className="body">
         <div className="left">
-          {gameOver ? (<PlayAgain onClick={resetGame} />) : (<Star count={stars} />)}
+          {isGameWon ? (<PlayAgain onClick={resetGame} />) : (<Star count={stars} />)}
         </div>
         <div className="right">
           {utils.range(1, 9).map(number =>
