@@ -10,21 +10,14 @@ const StarMatch = () => {
   const [candidateNums, setCandidateNums] = useState([]);
   const [secondsRemaining, setSecondsRemaining] = useState(10);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setSecondsRemaining(secondsRemaining - 1);
-    }, 1000);
-  
-  });
-
-  useEffect(() => {
-    if (secondsRemaining > 0) {
+	useEffect(() => {
+  	if (secondsRemaining > 0 && availableNums.length > 0) {
       const timerId = setTimeout(() => {
-        setSecondsRemaining(secondsRemaining - 1);
+	      setSecondsRemaining(secondsRemaining - 1);
       }, 1000);
-      return () => clearTimeout(timerId);
-    }
-  });
+    	return () => clearTimeout(timerId);
+  	}
+  });  
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
 
