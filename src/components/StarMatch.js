@@ -3,7 +3,7 @@ import NumberButton from './NumberButton';
 import Star from './Star';
 import PlayAgain from './PlayAgain';
 
-const StarMatch = () => {
+const StarMatch = (props) => {
 
   const [stars, setStars] = useState(utils.random(1, 9));
   const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
@@ -40,7 +40,7 @@ const StarMatch = () => {
   };
 
   const onNumberClick = (number, currentStatus) => {
-    if (currentStatus === 'used') {
+    if (gameStatus !== 'active' || currentStatus === 'used') {
       return;
     }
     
@@ -69,7 +69,7 @@ const StarMatch = () => {
       </div>
       <div className="body">
         <div className="left">
-          {gameStatus !== 'active' ? (<PlayAgain onClick={resetGame} gameStatus={gameStatus}/>) : (<Star count={stars} />)}
+          {gameStatus !== 'active' ? (<PlayAgain onClick={props.startNewGame} gameStatus={gameStatus}/>) : (<Star count={stars} />)}
         </div>
         <div className="right">
           {utils.range(1, 9).map(number =>
