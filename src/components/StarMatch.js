@@ -22,9 +22,9 @@ const StarMatch = () => {
       const timerId = setTimeout(() => {
         setSecondsRemaining(secondsRemaining - 1);
       }, 1000);
+      return () => clearTimeout(timerId);
     }
-    return () => clearTimeout(timerId);
-  }, [input])
+  });
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
 
@@ -76,7 +76,7 @@ const StarMatch = () => {
       </div>
       <div className="body">
         <div className="left">
-          {isGameWon ? (<PlayAgain onClick={resetGame} />) : (<Star count={stars} />)}
+          {gameStatus !== 'active' ? (<PlayAgain onClick={resetGame} gameStatus={gameStatus}/>) : (<Star count={stars} />)}
         </div>
         <div className="right">
           {utils.range(1, 9).map(number =>

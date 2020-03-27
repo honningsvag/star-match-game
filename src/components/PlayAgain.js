@@ -2,8 +2,14 @@ import React from 'react'
 
 const PlayAgain = (props) => {
   return (
-    <div className='game-done' onClick={props.onClick}>
-      <button>Play Again</button>      
+    <div className='game-done'>
+      <div
+        className='message'
+        style={{color: props.gameStatus === 'lost' ? 'red' : 'green'}}
+      >
+        {props.gameStatus === 'lost' ? 'Game Over' : 'Nicely done!'}
+      </div>
+      <button onClick={props.onClick}>Play Again</button>
     </div>
   )
 }
