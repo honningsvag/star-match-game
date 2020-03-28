@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-const Star = (props) => {
+const Star = props => {
   return (
     <>
-      {utils.range(1, props.count).map((starId, index) => <div key={starId} className='star' />)}
+      {utils.range(1, props.count).map((starId, index) => (
+        <div key={starId} className="star" />
+      ))}
     </>
-  )
-}
+  );
+};
 
-export default Star
+export default Star;
 
 const utils = {
-  range: (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i),
-}
+  range: (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i)
+};

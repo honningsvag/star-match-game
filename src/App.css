@@ -27,7 +27,7 @@
 }
 
 .star {
-	display: inline-block;
+  display: inline-block;
   margin: 0 15px;
 }
 
@@ -45,13 +45,14 @@
   font-size: 25px;
 }
 
-.number:focus, .number:active {
+.number:focus,
+.number:active {
   outline: none;
   border: thin solid #ddd;
 }
 
 .timer {
-	color: #666;
+  color: #666;
   margin-top: 3px;
   margin-left: 3px;
 }
