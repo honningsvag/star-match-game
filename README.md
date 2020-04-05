@@ -2,7 +2,7 @@
 
 > A small game to learn react hooks, components, state, etc.
 
-![game-active](/resources/game-active.png)
+![game-active](/resources/game-active.png=1070x570)
 ![game-won](/resources/game-won.png)
 ![game-lost](/resources/game-lost.png)
 
